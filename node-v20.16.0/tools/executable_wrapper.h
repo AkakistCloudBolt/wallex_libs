@@ -1,3 +1,4 @@
+#pragma once
 #ifndef TOOLS_EXECUTABLE_WRAPPER_H_
 #define TOOLS_EXECUTABLE_WRAPPER_H_
 
@@ -41,7 +42,7 @@ void FixupMain(int argc, argv_type raw_argv[], char*** argv) {
 using argv_type = char*;
 #define NODE_MAIN int main
 
-void FixupMain(int argc, argv_type raw_argv[], char*** argv) {
+static void FixupMain(int argc, argv_type raw_argv[], char*** argv) {
   *argv = uv_setup_args(argc, raw_argv);
   // Disable stdio buffering, it interacts poorly with printf()
   // calls elsewhere in the program (e.g., any logging from V8.)
